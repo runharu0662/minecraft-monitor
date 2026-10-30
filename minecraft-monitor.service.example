@@ -1,0 +1,17 @@
+[Unit]
+Description=Minecraft status monitor (Go)
+Wants=network-online.target tailscaled.service
+After=network-online.target tailscaled.service
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/opt/minecraft-monitor
+EnvironmentFile=/etc/minecraft-monitor.env
+ExecStart=/opt/minecraft-monitor/monitor
+Restart=always
+RestartSec=10s
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
